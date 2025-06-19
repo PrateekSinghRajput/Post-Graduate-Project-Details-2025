@@ -1,53 +1,86 @@
-# Post-Graduate-Project-Details-2025
+# Wireless Soil Nutrient and Temperature Monitoring System for Precision Agriculture
 
-Project Overview
+## Project Overview
 
-This project is a wireless soil nutrient and temperature monitoring system designed for precision agriculture. It uses an ESP32 microcontroller to measure
+This project implements a wireless soil nutrient and temperature monitoring system designed to support precision agriculture. It uses an ESP32 microcontroller to measure soil NPK levels (Nitrogen, Phosphorous, Potassium) and soil temperature, then transmits the data wirelessly using the **LoRa** protocol to a central receiver (another ESP32 or gateway).
 
-Soil NPK levels (Nitrogen, Phosphorous, Potassium)
-Soil temperature
-and transmits the data wirelessly using ESP-NOW to a central receiver (another ESP32 or gateway).
+The system enables farmers to optimize fertilizer usage, automate irrigation control, and monitor multiple nodes across large farms with real-time data and local displays.
 
-The system includes
-RS485-based NPK sensor (for soil nutrient detection)
-DS18B20 waterproof temperature sensor (for soil temperature)
-I2C LCD (16x2) and OLED (128x64) displays for local monitoring
-ESP-NOW protocol for long-range, low-power wireless communication
+---
 
-1.NPK Sensor Communication
-The NPK sensor uses Modbus RTU over RS485.
-The ESP32 sends Modbus query frames to request N, P, and K values.
-The sensor responds with the nutrient levels in mg/kg (ppm).
-MAX485 module handles the UART-to-RS485 conversion (DE/RE pins control transmit/receive mode).
+## Features
 
-2.Temperature Sensing
-The DS18B20 (1-Wire protocol) measures soil temperature.
-The ESP32 reads temperature in °C using the DallasTemperature library.
+- **Soil Nutrient Monitoring:** Measures N, P, K levels (mg/kg) via RS485-based NPK sensor using Modbus RTU.
+- **Soil Temperature Sensing:** Measures soil temperature (°C) with DS18B20 waterproof sensor.
+- **Wireless Communication:** LoRa protocol for low-power, long-range, and reliable data transmission.
+- **Local Display:** I2C 16x2 LCD and 128x64 OLED for onsite real-time data visualization.
+- **Multi-node Support:** Multiple ESP32 sensor nodes communicate with a central ESP32 gateway.
+- **Cloud Integration:** Optional data logging to platforms like ThingSpeak, Blynk, Firebase for analysis.
 
-3.Wireless Transmission (ESP-NOW)
-The ESP32 sends data to a receiver ESP32 (MAC address configured).
-ESP-NOW is used instead of WiFi for
-Lower latency
-Longer range
-No need for a WiFi router
+---
 
-struct struct_message {
-  int nodeId;       // Unique node identifier (based on MAC)
-  float temperature; // Soil temp in °C
-  byte nitrogen;     // N value (mg/kg)
-  byte phosphorous;  // P value (mg/kg)
-  byte potassium;    // K value (mg/kg)
-};
+## Hardware Components
 
-Applications in Agriculture
-Precision Farming
-Farmers can optimize fertilizer usage based on real-time NPK data.
+| Component              | Description                                   |
+|-----------------------|-----------------------------------------------|
+| ESP32                 | Microcontroller handling sensor and comms    |
+| RS485 NPK Sensor      | Soil nutrient detection (N, P, K)             |
+| MAX485 Module         | UART to RS485 conversion                       |
+| DS18B20 Sensor        | Waterproof temperature sensor (1-Wire)        |
+| I2C LCD (16x2)        | Local nutrient and temperature display        |
+| OLED Display (128x64) | Additional local display                        |
+| LoRa Module (e.g., SX1278) | For long-range wireless communication    |
+| Power Supply          | Suitable power source for ESP32 and sensors   |
 
-Automated Irrigation Control
-Can be integrated with solenoid valves to adjust water based on soil conditions.
+---
 
-Multi-Node Monitoring
-Multiple ESP32 nodes can send data to a central dashboard for large farms.
+## System Architecture
 
-Data Logging & Analysis
-Data can be stored in cloud platforms (ThingSpeak, Blynk, Firebase) for long-term trends.
+### 1. NPK Sensor Communication
+
+- Uses Modbus RTU protocol over RS485.
+- ESP32 sends query frames requesting nutrient data.
+- MAX485 controls transmit/receive mode via DE/RE pins.
+
+### 2. Temperature Sensing
+
+- DS18B20 sensor uses 1-Wire protocol.
+- ESP32 reads temperature using DallasTemperature library.
+
+### 3. Wireless Transmission
+
+- ESP32 nodes send data via **LoRa** to a receiver ESP32 gateway.
+- LoRa provides long-range, low-power, and reliable communication suitable for agricultural fields.
+
+
+---
+
+## Applications
+
+- **Precision Farming:** Optimize fertilizer application based on real-time soil nutrient data.
+- **Automated Irrigation:** Integrate with solenoid valves to adjust watering based on soil conditions.
+- **Multi-Node Monitoring:** Deploy multiple sensor nodes for large farm coverage.
+- **Data Logging & Analysis:** Store data on cloud platforms for trend analysis and decision making.
+
+---
+
+---
+
+## Troubleshooting
+
+- **No data received:** Check wiring, especially MAX485 DE/RE pin control and LoRa connections.
+- **LoRa transmission fails:** Confirm LoRa module wiring, frequency settings, and antenna connection.
+- **Sensor readings incorrect:** Verify sensor calibration and Modbus register addresses.
+- **Display not working:** Check I2C connections and addresses.
+
+---
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+Thank you for using this Wireless Soil Nutrient and Temperature Monitoring System with LoRa!  
+Happy precision farming! 🌱🚜
+
