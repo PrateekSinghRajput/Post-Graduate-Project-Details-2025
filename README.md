@@ -75,12 +75,6 @@ The system enables farmers to optimize fertilizer usage, automate irrigation con
 
 ---
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
 Thank you for using this Wireless Soil Nutrient and Temperature Monitoring System with LoRa!  
 Happy precision farming! 🌱🚜
 
