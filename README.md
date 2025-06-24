@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project implements a wireless soil nutrient and temperature monitoring system designed to support precision agriculture. It uses an ESP32 microcontroller to measure soil NPK levels (Nitrogen, Phosphorous, Potassium) and soil temperature, then transmits the data wirelessly using the **LoRa** protocol to a central receiver (another ESP32 or gateway).
+This project implements a wireless soil nutrient and temperature monitoring system designed to support precision agriculture. It uses an ESP32 microcontroller to measure soil NPK levels (Nitrogen, Phosphorous, Potassium) and soil temperature, then transmits the data wirelessly using the **LoRa** protocol to a central receiver.
 
 The system enables farmers to optimize fertilizer usage, automate irrigation control, and monitor multiple nodes across large farms with real-time data and local displays.
 
